@@ -3,14 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
+  "engines": {
+    "node": "18.12.0"
+  },
   "scripts": {
     "test": "jest",
     "commit": "git-cz",
     "prepare": "husky install",
     "lint": "eslint . --ext js,ts",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
+    "message:insert": "./scripts/messages/exec.sh",
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "dotenv -e .env.test -- node dist/index.js",
+    "db:reset": "dotenv -e .env.development -- ./scripts/db/reset_database.sh",
+    "db:recreate": "dotenv -e .env.development -- ./scripts/db/re-create_database.sh",
+    "db:backup:dev": "dotenv -e .env.development -- ./scripts/db/backup_database.sh",
+    "db:backup:homolog": "dotenv -e .env.test -- ./scripts/db/backup_database.sh",
+    "db:restore:dev": "dotenv -e .env.development -- ./scripts/db/restore_database.sh",
+    "db:restore:homolog": "dotenv -e .env.test -- ./scripts/db/restore_database.sh",
+    "prisma:migrate:dev": "dotenv -e .env.development -- yarn prisma migrate dev",
+    "prisma:migrate:homolog": "dotenv -e .env.test -- yarn prisma migrate deploy",
+    "prisma:studio:dev": "dotenv -e .env.development -- yarn prisma studio --port 3001",
+    "prisma:studio:homolog": "dotenv -e .env.test -- yarn prisma studio --port 3001",
     "dev:server": "dotenv -e .env.development -- ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules src/index.ts"
   },
   "keywords": [],
@@ -22,6 +36,9 @@
     "@babel/plugin-proposal-decorators": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-typescript": "^7.13.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/i18n": "^0.13.6",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^3.2.0",
     "@typescript-eslint/parser": "^3.2.0",
@@ -40,6 +57,7 @@
     "husky": "^7.0.2",
     "jest": "^27.2.0",
     "prettier": "^2.0.5",
+    "prisma": "^3.15.0",
     "ts-jest": "^27.0.5",
     "ts-node-dev": "^1.1.8",
     "tsconfig-paths": "^3.11.0",
@@ -51,6 +69,16 @@
     }
   },
   "dependencies": {
-    "dotenv-cli": "^4.1.1"
+    "@prisma/client": "^3.15.0",
+    "cors": "^2.8.5",
+    "dotenv-cli": "^4.1.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^6.0.1",
+    "i18n": "^0.15.1",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.7.0",
+    "winston": "^3.8.2",
+    "winston-daily-rotate-file": "^4.7.1"
   }
 }

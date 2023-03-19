@@ -1,0 +1,7 @@
+{
+  "ErrorEnvVarNotFound": "Não foi possível completar a operação. Por favor, entre em contato com a equipe de desenvolvimento.",
+  "ErrorGenericUnknown": "Ocorreu um erro interno. Por favor, entre em contato com a equipe de desenvolvimento.",
+  "ErrorOnlySupport": "Apenas pessoas credenciadas podem realizar esta operação.",
+  "ErrorRouteNotFound": "Não foi possível encontrar o recurso solicitado.",
+  "ErrorWithoutHandling": "Ocorreu um erro. Por favor, entre em contato com um administrador."
+}

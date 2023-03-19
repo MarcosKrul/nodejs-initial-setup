@@ -25,6 +25,7 @@
     "eslint-plugin-import-helpers"
   ],
   "rules": {
+    "no-nested-ternary": "off",
     "no-new": "off",
     "no-prototype-builtins": "off",
     "no-restricted-syntax": "off",
@@ -35,7 +36,7 @@
     "@typescript-eslint/explicit-function-return-type": ["off"],
     "@typescript-eslint/no-unused-vars": [
       "warn",
-      { "argsIgnorePattern": "_" }
+      { "argsIgnorePattern": "_",  "varsIgnorePattern": "_" }
     ],
     "no-useless-constructor": "off",
     "@typescript-eslint/naming-convention": [ 
